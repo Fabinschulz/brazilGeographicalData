@@ -1,12 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "lbusDUp2LkugpeN+Nr5qnSJO0gqepfOupjQpi95TliqtBHcvMHgA+1AH8dV658Vd6WBdbC/j/AnNJksy5wdbmg==",
+  "dgSpecHash": "CF8TI+dM/9vCjmF/SFVuu9yv1Ts93K2werZ+SjSGkWWPETwFf7fJYXp1w9t7waFiDl14sc0uyH7nr332Azn4lQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Fabio Uy3\\Desktop\\my-apps\\BrazilGeographicalData\\BrazilGeographicalData.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Fabio Uy3\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Fabio Uy3\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\Fabio Uy3\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
+    "C:\\Users\\Fabio Uy3\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\Fabio Uy3\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.0\\microsoft.aspnetcore.authentication.jwtbearer.7.0.0.nupkg.sha512",
     "C:\\Users\\Fabio Uy3\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.5\\microsoft.aspnetcore.openapi.7.0.5.nupkg.sha512",
+    "C:\\Users\\Fabio Uy3\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Fabio Uy3\\.nuget\\packages\\microsoft.data.sqlite.core\\7.0.12\\microsoft.data.sqlite.core.7.0.12.nupkg.sha512",
     "C:\\Users\\Fabio Uy3\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.12\\microsoft.entityframeworkcore.7.0.12.nupkg.sha512",
     "C:\\Users\\Fabio Uy3\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.12\\microsoft.entityframeworkcore.abstractions.7.0.12.nupkg.sha512",

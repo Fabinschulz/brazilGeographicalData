@@ -75,3 +75,8 @@ C:\Users\Fabio Uy3\Desktop\my-apps\BrazilGeographicalData\obj\Debug\net7.0\refin
 C:\Users\Fabio Uy3\Desktop\my-apps\BrazilGeographicalData\obj\Debug\net7.0\BrazilGeographicalData.pdb
 C:\Users\Fabio Uy3\Desktop\my-apps\BrazilGeographicalData\obj\Debug\net7.0\BrazilGeographicalData.genruntimeconfig.cache
 C:\Users\Fabio Uy3\Desktop\my-apps\BrazilGeographicalData\obj\Debug\net7.0\ref\BrazilGeographicalData.dll
+C:\Users\Fabio Uy3\Desktop\my-apps\BrazilGeographicalData\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\Fabio Uy3\Desktop\my-apps\BrazilGeographicalData\bin\Debug\net7.0\MediatR.dll
+C:\Users\Fabio Uy3\Desktop\my-apps\BrazilGeographicalData\bin\Debug\net7.0\MediatR.Contracts.dll
+C:\Users\Fabio Uy3\Desktop\my-apps\BrazilGeographicalData\bin\Debug\net7.0\BrazilGeographicalData.xml
+C:\Users\Fabio Uy3\Desktop\my-apps\BrazilGeographicalData\obj\Debug\net7.0\BrazilGeographicalData.xml

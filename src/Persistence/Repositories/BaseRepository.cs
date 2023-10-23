@@ -94,5 +94,6 @@ namespace BrazilGeographicalData.src.Infra.Repositories
             _context.Set<T>().Remove(data);
             await Task.CompletedTask;
         }
+         public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
     }
 }

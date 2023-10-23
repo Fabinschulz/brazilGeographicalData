@@ -1,8 +1,8 @@
-﻿namespace BrazilGeographicalData.src.Services
+﻿namespace BrazilGeographicalData.src.Services.Extensions
 {
-    public static class ConfigureCorsPolicy
+    public static class CorsPolicyExtension
     {
-        public static void ConfigureCors(this IServiceCollection services)
+        public static void ConfigureCorsPolicy(this IServiceCollection services)
         {
             services.AddCors(opt =>
             {

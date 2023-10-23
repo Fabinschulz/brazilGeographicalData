@@ -1,9 +1,10 @@
-﻿using BrazilGeographicalData.src.Domain.Entities;
+﻿using System.Security.Claims;
+using BrazilGeographicalData.src.Domain.Entities;
 
 namespace BrazilGeographicalData.src.Application.Interfaces
 {
     public interface IUserRepository : IBaseRepository<User>
     {
-        Task<User> Create(User user, string password);
+        Task<User> GetAuthenticatedUser(ClaimsPrincipal user);
     }
 }
