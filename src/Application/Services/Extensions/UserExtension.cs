@@ -102,7 +102,6 @@ namespace BrazilGeographicalData.src.Application.Services.Extensions
             //             {
             //                 throw new NotFoundException("Usuário não encontrado.");
             //             }
-
             //             await _userRepository.Update(model);
             //             await _userRepository.SaveChangesAsync();
             //             return Results.Ok(user);
