@@ -80,3 +80,9 @@ C:\Users\Fabio Uy3\Desktop\my-apps\BrazilGeographicalData\bin\Debug\net7.0\Media
 C:\Users\Fabio Uy3\Desktop\my-apps\BrazilGeographicalData\bin\Debug\net7.0\MediatR.Contracts.dll
 C:\Users\Fabio Uy3\Desktop\my-apps\BrazilGeographicalData\bin\Debug\net7.0\BrazilGeographicalData.xml
 C:\Users\Fabio Uy3\Desktop\my-apps\BrazilGeographicalData\obj\Debug\net7.0\BrazilGeographicalData.xml
+C:\Users\Fabio Uy3\Desktop\my-apps\BrazilGeographicalData\bin\Debug\net7.0\FluentValidation.dll
+C:\Users\Fabio Uy3\Desktop\my-apps\BrazilGeographicalData\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\Fabio Uy3\Desktop\my-apps\BrazilGeographicalData\bin\Debug\net7.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Fabio Uy3\Desktop\my-apps\BrazilGeographicalData\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Fabio Uy3\Desktop\my-apps\BrazilGeographicalData\bin\Debug\net7.0\MS.Cloud.AutoMapper.dll
+C:\Users\Fabio Uy3\Desktop\my-apps\BrazilGeographicalData\bin\Debug\net7.0\MS.Cloud.Core.dll

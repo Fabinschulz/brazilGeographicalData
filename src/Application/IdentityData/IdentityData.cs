@@ -1,4 +1,4 @@
-﻿namespace BrazilGeographicalData.src.Application.IdentityData
+﻿namespace BrazilGeographicalData.src.Application
 {
     public static class IdentityData
     {

@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using BrazilGeographicalData.src.Application.Features.UserFeatures.CreateUser;
 using BrazilGeographicalData.src.Domain.Entities;
 
-namespace BrazilGeographicalData.src.Application.Features.UserFeatures.Create
+namespace BrazilGeographicalData.src.Application.Features.UserFeatures.CreateUser
 {
     public sealed class CreateUserMapper : Profile
     {
