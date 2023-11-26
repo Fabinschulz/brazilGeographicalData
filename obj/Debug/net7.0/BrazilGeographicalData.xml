@@ -4,5 +4,17 @@
         <name>BrazilGeographicalData</name>
     </assembly>
     <members>
+        <member name="T:BrazilGeographicalData.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:BrazilGeographicalData.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BrazilGeographicalData.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BrazilGeographicalData.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

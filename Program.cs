@@ -1,5 +1,5 @@
-using BrazilGeographicalData.src.Services.ConfigureServices;
-using BrazilGeographicalData.src.Services.Extensions;
+using BrazilGeographicalData.src.Application.Services.ConfigureServices;
+using BrazilGeographicalData.src.Application.Services.Extensions;
 using Microsoft.AspNetCore.Rewrite;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +14,8 @@ builder.AddDatabase();
 builder.AddSwaggerDoc();
 builder.AddAuthPolicy();
 builder.AddAuthJwt();
+builderServices.ConfigureServices();
+//builderServices.ConfigureApplication();
 
 var app = builder.Build();
 
