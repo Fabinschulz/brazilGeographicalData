@@ -1,7 +1,7 @@
 ﻿using BrazilGeographicalData.src.Domain.Entities;
 using BrazilGeographicalData.src.Domain.Interfaces;
 
-namespace BrazilGeographicalData.src.Application.Features.UserFeatures.CreateUser
+namespace BrazilGeographicalData.src.Domain.Factory
 {
     public class ConcreteUserFactory : IUserFactory
     {

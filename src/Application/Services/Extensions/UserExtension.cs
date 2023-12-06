@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using BrazilGeographicalData.src.Application.Common.Exceptions;
 using BrazilGeographicalData.src.Application.Features.UserFeatures.CreateUser;
+using BrazilGeographicalData.src.Application.Features.UserFeatures.GetUser;
 using BrazilGeographicalData.src.Application.Services.TokenServices;
 using BrazilGeographicalData.src.Domain.Entities;
 using BrazilGeographicalData.src.Domain.Interfaces;
 using BrazilGeographicalData.src.Infra.Repositories;
 using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace BrazilGeographicalData.src.Application.Services.Extensions
@@ -42,18 +44,7 @@ namespace BrazilGeographicalData.src.Application.Services.Extensions
             //     }
             // });
 
-            // app.MapGet("/v1/user/{id}", async (UserRepository _userRepository, Guid id) =>
-            // {
-            //     try
-            //     {
-            //         var user = await _userRepository.GetById(id);
-            //         return Results.Ok(user);
-            //     }
-            //     catch (Exception ex)
-            //     {
-            //         throw new BadRequestException(ex.Message);
-            //     }
-            // });
+
 
             // app.MapPost("/v1/user/login", async (UserRepository _userRepository, CreateUserRequest request) =>
             // {
@@ -84,14 +75,22 @@ namespace BrazilGeographicalData.src.Application.Services.Extensions
             //     }
             // });
 
-            app.MapPost("/v1/user", async (IMediator mediator, CreateUserRequest request) =>
+            app.MapGet("/v1/user/{id}", async (IMediator mediator, Guid id) =>
+            {
+                var command = new FindUserByIdRequest(id);
+                var user = await mediator.Send(command);
+                return Results.Ok(user);
+
+            }).WithTags("USER").WithSummary("Find a user by id").WithOpenApi();
+
+            app.MapPost("/v1/user", async (IMediator mediator, CreateUserRequest command) =>
             {
 
-                var createdUser = await mediator.Send(request);
+                var createdUser = await mediator.Send(command);
                 var resp = new { User = createdUser };
                 return Results.Ok(resp);
 
-            });
+            }).WithTags("USER").WithSummary("Create a new user").WithOpenApi();
 
             //     app.MapPut("/v1/user/{id}", async (CreateUserRequest request, Guid id, User model) =>
             //     {

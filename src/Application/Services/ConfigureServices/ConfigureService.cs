@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BrazilGeographicalData.src.Application.Common.Behaviors;
-using BrazilGeographicalData.src.Application.Features.UserFeatures.CreateUser;
+using BrazilGeographicalData.src.Domain.Factory;
 using BrazilGeographicalData.src.Domain.Interfaces;
 using BrazilGeographicalData.src.Infra.Context;
 using BrazilGeographicalData.src.Infra.Repositories;
@@ -9,6 +9,8 @@ using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 using System.Text;
 
@@ -21,7 +23,6 @@ namespace BrazilGeographicalData.src.Application.Services.ConfigureServices
             builder.Services.AddTransient<UserRepository>();
             builder.Services.AddScoped<IUserFactory, ConcreteUserFactory>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
-
         }
 
         public static void AddDatabase(this WebApplicationBuilder builder)
@@ -62,9 +63,18 @@ namespace BrazilGeographicalData.src.Application.Services.ConfigureServices
                 {
                     Title = "Dados Geográficos do Brasil (IBGE)",
                     Version = "v1",
-                    Description = "Uma API para consultar dados geográficos do Brasil."
+                    Description = "Uma API para consultar dados geográficos do Brasil.",
+                    Contact = new()
+                    {
+                        Name = "Fabio Lima",
+                        Email = "fabio.lima19997@gmail.com"
+                    }
 
                 });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                config.IncludeXmlComments(xmlPath);
+                config.DocumentFilter<TagDescriptionsDocumentFilter>();
             });
         }
 
@@ -84,6 +94,18 @@ namespace BrazilGeographicalData.src.Application.Services.ConfigureServices
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
+        }
+
+        public class TagDescriptionsDocumentFilter : IDocumentFilter
+        {
+            public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
+            {
+                swaggerDoc.Tags = new List<OpenApiTag>
+                {
+                    new OpenApiTag { Name = "IBGE", Description = "Brazil Geographical API" },
+                    new OpenApiTag { Name = "USER", Description = "User API" }
+                };
+            }
         }
 
     }

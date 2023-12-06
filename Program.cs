@@ -15,7 +15,6 @@ builder.AddSwaggerDoc();
 builder.AddAuthPolicy();
 builder.AddAuthJwt();
 builderServices.ConfigureServices();
-//builderServices.ConfigureApplication();
 
 var app = builder.Build();
 
