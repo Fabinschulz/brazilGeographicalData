@@ -5,7 +5,7 @@ namespace BrazilGeographicalData.src.Domain.Interfaces
 {
     public interface IBaseRepository<T> where T : BaseEntity
     {
-        Task<ListDataPagination<T>> GetAll(int page, int size, string? searchString, string? email, bool isDeleted, string? orderBy);
+        Task<ListDataPagination<T>> GetAll(int Page, int Size, string? Username, string? Email, bool IsDeleted, string? OrderBy, string Role);
         Task<T> GetById(Guid id);
         Task<T> Create(T entity);
         Task Update(T entity);

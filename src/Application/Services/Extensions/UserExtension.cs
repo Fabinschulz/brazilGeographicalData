@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BrazilGeographicalData.src.Application.Common.Exceptions;
 using BrazilGeographicalData.src.Application.Features.UserFeatures.CreateUser;
+using BrazilGeographicalData.src.Application.Features.UserFeatures.GetAllUser;
 using BrazilGeographicalData.src.Application.Features.UserFeatures.GetUser;
 using BrazilGeographicalData.src.Application.Services.TokenServices;
 using BrazilGeographicalData.src.Domain.Entities;
@@ -15,6 +16,7 @@ namespace BrazilGeographicalData.src.Application.Services.Extensions
 {
     public static class UserExtension
     {
+      
         public static void MapUserEndpoints(this WebApplication app)
         {
 
@@ -30,21 +32,6 @@ namespace BrazilGeographicalData.src.Application.Services.Extensions
             //         throw new BadRequestException(ex.Message);
             //     }
             // }).RequireAuthorization("Admin");
-
-            // app.MapGet("/v1/user", async (UserRepository _userRepository, int page, int size, string? searchString, string? email, bool isDeleted, string? orderBy) =>
-            // {
-            //     try
-            //     {
-            //         var users = await _userRepository.GetAll(page, size, searchString, email, isDeleted, orderBy);
-            //         return Results.Ok(users);
-            //     }
-            //     catch (Exception ex)
-            //     {
-            //         throw new BadRequestException(ex.Message);
-            //     }
-            // });
-
-
 
             // app.MapPost("/v1/user/login", async (UserRepository _userRepository, CreateUserRequest request) =>
             // {
@@ -75,6 +62,13 @@ namespace BrazilGeographicalData.src.Application.Services.Extensions
             //     }
             // });
 
+            app.MapGet("/v1/user", async (IMediator mediator, int page, int size, string? username, string? email, bool? isDeleted, string? orderBy, string? role) =>
+            {
+                var getAllUserRequest = new GetAllUserRequest(page, size, username, email, isDeleted ?? false, orderBy, role);
+                var users = await mediator.Send(getAllUserRequest);
+                return Results.Ok(users);
+            }).WithTags("USER").WithSummary("Get all users").WithOpenApi();
+
             app.MapGet("/v1/user/{id}", async (IMediator mediator, Guid id) =>
             {
                 var command = new FindUserByIdRequest(id);
@@ -82,6 +76,7 @@ namespace BrazilGeographicalData.src.Application.Services.Extensions
                 return Results.Ok(user);
 
             }).WithTags("USER").WithSummary("Find a user by id").WithOpenApi();
+
 
             app.MapPost("/v1/user", async (IMediator mediator, CreateUserRequest command) =>
             {

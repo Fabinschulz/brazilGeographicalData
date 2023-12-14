@@ -32,8 +32,4 @@
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.0" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="src\Application\Features\UserFeatures\GetAllUser\" />
-	</ItemGroup>
-
 </Project>

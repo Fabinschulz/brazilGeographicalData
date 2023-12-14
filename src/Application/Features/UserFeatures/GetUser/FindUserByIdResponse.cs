@@ -1,6 +1,6 @@
 ﻿namespace BrazilGeographicalData.src.Application.Features.UserFeatures.GetUser
 {
-    public class FindUserByIdResponse
+    public sealed record FindUserByIdResponse
     {
         public Guid Id { get; set; }
         public string Username { get; set; }

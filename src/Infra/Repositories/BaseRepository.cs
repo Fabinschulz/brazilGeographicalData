@@ -15,47 +15,69 @@ namespace BrazilGeographicalData.src.Infra.Repositories
             _context = context;
         }
 
-        public async Task<ListDataPagination<T>> GetAll(int page, int size, string? searchString, string? email, bool isDeleted, string? orderBy)
+        public async Task<ListDataPagination<T>> GetAll(int page, int size, string? username, string? email, bool isDeleted, string? orderBy, string? role)
         {
             var query = _context.Set<T>().AsQueryable();
 
-            if (!string.IsNullOrEmpty(searchString) && typeof(T).GetProperty("Name") != null)
+            if (!string.IsNullOrEmpty(username))
             {
-                query = query.Where(x => x.GetType().GetProperty("Name").GetValue(x).ToString().Contains(searchString));
+                query = query.Where(x => EF.Property<string>(x, "Username") != null && EF.Property<string>(x, "Username").Contains(username));
             }
 
-            if (!string.IsNullOrEmpty(email) && typeof(T).GetProperty("Email") != null)
+            if (!string.IsNullOrEmpty(email))
             {
-                query = query.Where(x => x.GetType().GetProperty("Email").GetValue(x).ToString().Contains(email));
+                query = query.Where(x => EF.Property<string>(x, "Email") != null && EF.Property<string>(x, "Email").Contains(email));
             }
 
-            if (isDeleted && typeof(T).GetProperty("IsDeleted") != null)
+            if (isDeleted)
             {
-                query = query.Where(x => (bool)(x.GetType().GetProperty("IsDeleted").GetValue(x) ?? false) == isDeleted);
+                query = query.Where(x => EF.Property<bool>(x, "IsDeleted") != null && EF.Property<bool>(x, "IsDeleted") == isDeleted);
             }
-
 
             if (!string.IsNullOrEmpty(orderBy))
             {
-                switch (orderBy)
+                switch (orderBy.ToLower())
                 {
-                    case "email" when typeof(T).GetProperty("Email") != null:
-                        query = query.OrderBy(x => typeof(T).GetProperty("Email").GetValue(x) ?? "");
+                    case "username_asc":
+                        query = query.OrderBy(x => EF.Property<string>(x, "Username"));
                         break;
-                    case "isDeleted" when typeof(T).GetProperty("IsDeleted") != null:
-                        query = query.OrderBy(x => typeof(T).GetProperty("IsDeleted").GetValue(x) ?? false);
+                    case "username_desc":
+                        query = query.OrderByDescending(x => EF.Property<string>(x, "Username"));
+                        break;
+                    case "email_asc":
+                        query = query.OrderBy(x => EF.Property<string>(x, "Email"));
+                        break;
+                    case "email_desc":
+                        query = query.OrderByDescending(x => EF.Property<string>(x, "Email"));
+                        break;
+                    case "isdeleted_asc":
+                        query = query.OrderBy(x => EF.Property<bool>(x, "IsDeleted"));
+                        break;
+                    case "isdeleted_desc":
+                        query = query.OrderByDescending(x => EF.Property<bool>(x, "IsDeleted"));
+                        break;
+                    case "role_asc":
+                        query = query.OrderBy(x => EF.Property<string>(x, "Role"));
+                        break;
+                    case "role_desc":
+                        query = query.OrderByDescending(x => EF.Property<string>(x, "Role"));
                         break;
                     default:
-                        query = query.OrderBy(x => x);
+                        query = query.OrderBy(x => EF.Property<string>(x, "Username"));
                         break;
                 }
+            }
+
+            if (!string.IsNullOrEmpty(role))
+            {
+                query = query.Where(x => EF.Property<string>(x, "Role") != null && EF.Property<string>(x, "Role").Contains(role));
             }
 
             var totalItems = await query.CountAsync();
 
             var totalPages = (int)Math.Ceiling((double)totalItems / size);
 
-            var data = await query.Skip(page * size).Take(size).ToListAsync();
+            var data = await query.Skip((page - 1) * size).Take(size).ToListAsync();
 
             return new ListDataPagination<T>
             {
