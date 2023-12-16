@@ -31,7 +31,11 @@ namespace BrazilGeographicalData.src.Infra.Repositories
 
             if (isDeleted)
             {
-                query = query.Where(x => EF.Property<bool>(x, "IsDeleted") != null && EF.Property<bool>(x, "IsDeleted") == isDeleted);
+                query = query.Where(x => EF.Property<bool>(x, "IsDeleted") == isDeleted);
+            }
+            else
+            {
+                query = query.Where(x => EF.Property<bool?>(x, "IsDeleted") == false || EF.Property<bool?>(x, "IsDeleted") == null);
             }
 
             if (!string.IsNullOrEmpty(orderBy))
@@ -109,14 +113,23 @@ namespace BrazilGeographicalData.src.Infra.Repositories
             await Task.CompletedTask;
         }
 
-        public async Task Delete(Guid id, T entity)
+        public async Task<bool> Delete(Guid id)
         {
-            entity.DeletedAt = DateTime.UtcNow;
-            _context.Set<T>().Update(entity);
-            var data = await GetById(id);
-            _context.Set<T>().Remove(data);
-            await Task.CompletedTask;
+            var entity = await _context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
+
+            if (entity != null)
+            {
+                entity.DeletedAt = DateTime.UtcNow;
+                entity.IsDeleted = true;
+
+                _context.Set<T>().Update(entity);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
         }
+
         public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
     }
 }

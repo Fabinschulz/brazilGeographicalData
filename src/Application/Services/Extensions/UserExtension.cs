@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BrazilGeographicalData.src.Application.Common.Exceptions;
 using BrazilGeographicalData.src.Application.Features.UserFeatures.CreateUser;
+using BrazilGeographicalData.src.Application.Features.UserFeatures.DeleteUser;
 using BrazilGeographicalData.src.Application.Features.UserFeatures.GetAllUser;
 using BrazilGeographicalData.src.Application.Features.UserFeatures.GetUser;
 using BrazilGeographicalData.src.Application.Services.TokenServices;
@@ -16,7 +17,7 @@ namespace BrazilGeographicalData.src.Application.Services.Extensions
 {
     public static class UserExtension
     {
-      
+
         public static void MapUserEndpoints(this WebApplication app)
         {
 
@@ -106,33 +107,15 @@ namespace BrazilGeographicalData.src.Application.Services.Extensions
             //         }
             //     });
 
-            //     app.MapDelete("/v1/user/{id}", async (UserRepository _userRepository, Guid id) =>
-            //     {
-            //         try
-            //         {
-            //             var user = await _userRepository.GetById(id);
-            //             if (user != null)
-            //             {
-            //                 if (user.IsDeleted)
-            //                 {
-            //                     return Results.NoContent();
-            //                 }
+            app.MapDelete("/v1/user/{id}", async (IMediator mediator, Guid id) =>
+           {
 
-            //                 user.IsDeleted = true;
-            //                 await _userRepository.SaveChangesAsync();
-            //             }
-            //             else
-            //             {
-            //                 throw new NotFoundException("Usuário não encontrado.");
-            //             }
+               var command = new DeleteUserRequest(id);
 
-            //             return Results.NoContent();
-            //         }
-            //         catch (Exception ex)
-            //         {
-            //             throw new BadRequestException(ex.Message);
-            //         }
-            //     });
+               var isDeleted = await mediator.Send(command);
+               return Results.Ok(isDeleted);
+
+           }).WithTags("USER").WithSummary("Delete a user").WithOpenApi();
         }
 
     }
