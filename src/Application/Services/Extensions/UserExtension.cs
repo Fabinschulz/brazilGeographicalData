@@ -4,6 +4,7 @@ using BrazilGeographicalData.src.Application.Features.UserFeatures.CreateUser;
 using BrazilGeographicalData.src.Application.Features.UserFeatures.DeleteUser;
 using BrazilGeographicalData.src.Application.Features.UserFeatures.GetAllUser;
 using BrazilGeographicalData.src.Application.Features.UserFeatures.GetUser;
+using BrazilGeographicalData.src.Application.Features.UserFeatures.PutUser;
 using BrazilGeographicalData.src.Application.Services.TokenServices;
 using BrazilGeographicalData.src.Domain.Entities;
 using BrazilGeographicalData.src.Domain.Interfaces;
@@ -88,24 +89,14 @@ namespace BrazilGeographicalData.src.Application.Services.Extensions
 
             }).WithTags("USER").WithSummary("Create a new user").WithOpenApi();
 
-            //     app.MapPut("/v1/user/{id}", async (CreateUserRequest request, Guid id, User model) =>
-            //     {
-            //         try
-            //         {
-            //             var user = await _userRepository.GetById(id);
-            //             if (user == null)
-            //             {
-            //                 throw new NotFoundException("Usuário não encontrado.");
-            //             }
-            //             await _userRepository.Update(model);
-            //             await _userRepository.SaveChangesAsync();
-            //             return Results.Ok(user);
-            //         }
-            //         catch (Exception ex)
-            //         {
-            //             throw new BadRequestException(ex.Message);
-            //         }
-            //     });
+            app.MapPut("/v1/user/{id}", async (IMediator mediator, Guid id, PutUserRequest command) =>
+            {
+
+                var putUserRequest = new PutUserRequest(id, command.Username, command.Email, command.Role, command.IsDeleted);
+                var user = await mediator.Send(putUserRequest);
+                return Results.Ok(user);
+
+            }).WithTags("USER").WithSummary("Update a user").WithOpenApi();
 
             app.MapDelete("/v1/user/{id}", async (IMediator mediator, Guid id) =>
            {

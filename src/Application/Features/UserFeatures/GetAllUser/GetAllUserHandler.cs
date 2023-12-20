@@ -22,7 +22,7 @@ namespace BrazilGeographicalData.src.Application.Features.UserFeatures.GetAllUse
 
         public async Task<GetAllUserResponse> Handle(GetAllUserRequest request, CancellationToken cancellationToken)
         {
-            _validator.ValidateAndThrow(request);
+            await _validator.ValidateAndThrowAsync(request);
             var users = await _userRepository.GetAll(request.Page, request.Size, request.Username, request.Email, request.IsDeleted, request.OrderBy, request.Role);
             var usersMapped = _mapper.Map<ListDataPagination<User>>(users);
             return new GetAllUserResponse(usersMapped);

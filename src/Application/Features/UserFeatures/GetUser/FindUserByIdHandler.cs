@@ -21,7 +21,7 @@ namespace BrazilGeographicalData.src.Application.Features.UserFeatures.GetUser
 
         public async Task<FindUserByIdResponse> Handle(FindUserByIdRequest request, CancellationToken cancellationToken)
         {
-            _validator.ValidateAndThrow(request);
+            await _validator.ValidateAndThrowAsync(request);
             var user = await _userRepository.GetById(request.Id);
             if (user == null)
             {

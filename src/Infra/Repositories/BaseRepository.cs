@@ -103,6 +103,7 @@ namespace BrazilGeographicalData.src.Infra.Repositories
             entity.CreatedAt = DateTime.UtcNow;
             await _context.Set<T>().AddAsync(entity);
             await _context.SaveChangesAsync();
+            await Task.CompletedTask;
             return entity;
         }
 
@@ -110,6 +111,7 @@ namespace BrazilGeographicalData.src.Infra.Repositories
         {
             entity.UpdatedAt = DateTime.UtcNow;
             _context.Set<T>().Update(entity);
+            await _context.SaveChangesAsync();
             await Task.CompletedTask;
         }
 
@@ -124,6 +126,7 @@ namespace BrazilGeographicalData.src.Infra.Repositories
 
                 _context.Set<T>().Update(entity);
                 await _context.SaveChangesAsync();
+                await Task.CompletedTask;
                 return true;
             }
 
