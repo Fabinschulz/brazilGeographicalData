@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BrazilGeographicalData")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a55da1b57fb6c6801b4662e18ab14122e142be59")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ffe4145d16fdd545e1c1e1020322aa78caff2106")]
 [assembly: System.Reflection.AssemblyProductAttribute("BrazilGeographicalData")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BrazilGeographicalData")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

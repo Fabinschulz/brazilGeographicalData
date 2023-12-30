@@ -5,10 +5,7 @@ using BrazilGeographicalData.src.Domain.Entities;
 using BrazilGeographicalData.src.Domain.Interfaces;
 using BrazilGeographicalData.src.Infra.Context;
 using Microsoft.EntityFrameworkCore;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace BrazilGeographicalData.src.Infra.Repositories
 {
@@ -37,7 +34,9 @@ namespace BrazilGeographicalData.src.Infra.Repositories
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             if (user == null)
+            {
                 throw new NotFoundException("Usuário não encontrado.");
+            }
 
             return user;
         }
@@ -46,7 +45,7 @@ namespace BrazilGeographicalData.src.Infra.Repositories
         {
 
             if (!PasswordService.VerifyPasswordHash(password, user.Password))
-                throw new BadRequestException("Senha inválida.");
+                throw new BadRequestException(new[] { "Senha inválida." });
         }
         private LoggedUser CreateLoggedUser(User user, string token)
         {

@@ -48,18 +48,19 @@ namespace BrazilGeographicalData.src.Application.Features.UserFeatures.UserLogin
                 else
                 {
                     _logger.LogInformation($"Login do usuário: {request.Email} falhou devido a credenciais inválidas.");
-                    throw new BadRequestException("Credenciais de login inválidas.");
+                    throw new BadRequestException(new[] { "Credenciais de login inválidas." });
                 }
             }
-            catch (NotFoundException)
+            catch (NotFoundException ex)
             {
+                _logger.LogError($"Erro ao tentar fazer login do usuário: {ex.Message}");
                 throw;
             }
-            catch (Exception ex)
+            catch (InternalServerErrorException ex)
             {
-                _logger.LogError($"Erro ao buscar usuário no repositório: {ex.Message}");
+                _logger.LogError($"Erro ao tentar fazer login do usuário: {ex.Message}");
 
-                throw new BadRequestException("Usuário ou senha inválidos.");
+                throw new InternalServerErrorException("Ocorreu um erro interno ao processar a requisição.");
             }
         }
 
