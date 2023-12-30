@@ -29,12 +29,7 @@ namespace BrazilGeographicalData.src.Application.Features.UserFeatures.CreateUse
 
             var createUser = CreateUserFromRequest(request);
             var createdUser = await CreateUserInRepository(createUser);
-
-            var token = GenerateTokenForUser(createdUser);
-            ClearSensitiveInformation(createdUser);
-
             var userResponse = MapUserToResponse(createdUser);
-            userResponse.Token = token;
             return userResponse;
 
         }
@@ -52,16 +47,6 @@ namespace BrazilGeographicalData.src.Application.Features.UserFeatures.CreateUse
         private async Task<User> CreateUserInRepository(User user)
         {
             return await _userRepository.Create(user);
-        }
-
-        private string GenerateTokenForUser(User user)
-        {
-            return TokenService.GenerateToken(user);
-        }
-
-        private void ClearSensitiveInformation(User user)
-        {
-            user.Password = "";
         }
 
         private CreateUserResponse MapUserToResponse(User user)

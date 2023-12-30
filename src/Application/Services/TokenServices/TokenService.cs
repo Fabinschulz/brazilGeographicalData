@@ -13,14 +13,14 @@ namespace BrazilGeographicalData.src.Application.Services.TokenServices
         {
             //Estancia do manipulador de Token
             var tokenHandler = new JwtSecurityTokenHandler();
-            //Chave da classe SSettings. O Token Handler espera um Array de Bytes, por isso é necessário converter
+            //Chave da classe Settings. O Token Handler espera um Array de Bytes, por isso é necessário converter
             var key = Encoding.ASCII.GetBytes(Settings.JwtKey);
 
             var claims = user.GetClaims();
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims), // Claims que vão compor o token
-                Expires = DateTime.UtcNow.AddHours(8),
+                Expires = DateTime.UtcNow.AddHours(8), // Tempo de expiração do token
                 //Assinatura do token, serve para identificar quem mandou o token e garantir que o token não foi alterado no meio do caminho.
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

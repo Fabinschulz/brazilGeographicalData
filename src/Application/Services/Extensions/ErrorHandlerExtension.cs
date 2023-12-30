@@ -19,30 +19,38 @@ namespace BrazilGeographicalData.src.Application.Services.Extensions
                     var exception = exceptionHandlerFeature?.Error;
                     if (exceptionHandlerFeature == null) return;
 
+                    context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+                    context.Response.ContentType = "application/json";
+
                     if (exception is BadRequestException badRequestException)
                     {
-                        context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
-                        context.Response.ContentType = "application/json";
                         context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
 
                         var errorResponse = new
                         {
-                            context.Response.StatusCode,
-                            errors = badRequestException.Errors.ToArray()
+                            Message = badRequestException.Message,
+                            StatusCode = context.Response.StatusCode
                         };
-
 
                         var jsonErrorResponse = JsonSerializer.Serialize(errorResponse);
                         await context.Response.WriteAsync(jsonErrorResponse);
                     }
                     else
                     {
-                        // Trata outras exceções como erro interno do servidor
                         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                        await context.Response.WriteAsync("Internal Server Error");
+                        var errorResponse = new
+                        {
+                            Message = exception.Message,
+                            StatusCode = context.Response.StatusCode
+                        };
+
+                        var jsonErrorResponse = JsonSerializer.Serialize(errorResponse);
+                        await context.Response.WriteAsync(jsonErrorResponse);
                     }
                 });
             });
         }
     }
+
+
 }

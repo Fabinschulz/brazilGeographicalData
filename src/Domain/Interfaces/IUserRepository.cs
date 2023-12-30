@@ -5,6 +5,7 @@ namespace BrazilGeographicalData.src.Domain.Interfaces
 {
     public interface IUserRepository : IBaseRepository<User>
     {
+        Task<LoggedUser> Login(string Email, string Password);
         Task<User> GetAuthenticatedUser(ClaimsPrincipal user);
         Task<ListDataPagination<User>> GetAll(int Page, int Size, string? Username, string? Email, bool IsDeleted, string? OrderBy, string Role);
     }

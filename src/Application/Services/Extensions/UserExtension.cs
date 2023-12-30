@@ -5,6 +5,7 @@ using BrazilGeographicalData.src.Application.Features.UserFeatures.DeleteUser;
 using BrazilGeographicalData.src.Application.Features.UserFeatures.GetAllUser;
 using BrazilGeographicalData.src.Application.Features.UserFeatures.GetUser;
 using BrazilGeographicalData.src.Application.Features.UserFeatures.PutUser;
+using BrazilGeographicalData.src.Application.Features.UserFeatures.UserLogin;
 using BrazilGeographicalData.src.Application.Services.TokenServices;
 using BrazilGeographicalData.src.Domain.Entities;
 using BrazilGeographicalData.src.Domain.Interfaces;
@@ -35,34 +36,13 @@ namespace BrazilGeographicalData.src.Application.Services.Extensions
             //     }
             // }).RequireAuthorization("Admin");
 
-            // app.MapPost("/v1/user/login", async (UserRepository _userRepository, CreateUserRequest request) =>
-            // {
-            //     try
-            //     {
+             app.MapPost("/v1/user/login", async (IMediator mediator, string Email, string Password) =>
+             {
+                 var request = new UserLoginRequest(Email, Password);
+               var userLoginResponse = await mediator.Send(request);
+                 return Results.Ok(userLoginResponse);
 
-            //         var user = new User
-            //         {
-            //             Email = request.Email,
-            //             Password = request.Password,
-            //         };
-
-            //         var createdUser = await _userRepository.Create(user);
-
-            //         if (createdUser == null)
-            //         {
-            //             throw new NotFoundException("Username or password is incorrect");
-            //         }
-
-            //         var token = TokenService.GenerateToken(createdUser);
-            //         createdUser.Password = "";
-
-            //         return Results.Ok(new { user = createdUser, token });
-            //     }
-            //     catch (Exception ex)
-            //     {
-            //         throw new BadRequestException(ex.Message);
-            //     }
-            // });
+             }).WithTags("USER").WithSummary("Login a user").WithOpenApi();
 
             app.MapGet("/v1/user", async (IMediator mediator, int page, int size, string? username, string? email, bool? isDeleted, string? orderBy, string? role) =>
             {
@@ -105,8 +85,9 @@ namespace BrazilGeographicalData.src.Application.Services.Extensions
 
                var isDeleted = await mediator.Send(command);
                return Results.Ok(isDeleted);
+               
+           }).WithTags("USER").WithSummary("Delete a user").WithOpenApi().RequireAuthorization(IdentityData.AdminPolicy);
 
-           }).WithTags("USER").WithSummary("Delete a user").WithOpenApi();
         }
 
     }

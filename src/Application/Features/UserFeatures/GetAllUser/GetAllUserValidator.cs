@@ -29,8 +29,8 @@ namespace BrazilGeographicalData.src.Application.Features.UserFeatures.GetAllUse
 
         private bool IsRoleValid(string role)
         {
-            var admin = IdentityData.ADMIN;
-            var user = IdentityData.USER;
+            var admin = IdentityData.AdminPolicy;
+            var user = IdentityData.UserPolicy;
             return role == admin || role == user;
         }
 

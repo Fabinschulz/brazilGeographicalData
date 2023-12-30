@@ -2,7 +2,7 @@
 {
     public static class IdentityData
     {
-        public const string USER = "User";
-        public const string ADMIN = "Admin";
+        public const string UserPolicy = "User";
+        public const string AdminPolicy = "Admin";
     }
 }

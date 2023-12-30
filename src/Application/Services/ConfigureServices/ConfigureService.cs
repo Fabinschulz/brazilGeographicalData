@@ -82,8 +82,8 @@ namespace BrazilGeographicalData.src.Application.Services.ConfigureServices
         {
             builder.Services.AddAuthorization(opt =>
             {
-                opt.AddPolicy("Admin", policy => policy.RequireRole(IdentityData.ADMIN));
-                opt.AddPolicy("User", policy => policy.RequireRole(IdentityData.USER));
+                opt.AddPolicy("Admin", policy => policy.RequireRole(IdentityData.AdminPolicy));
+                opt.AddPolicy("User", policy => policy.RequireRole(IdentityData.UserPolicy));
             });
         }
 
