@@ -18,7 +18,7 @@ namespace BrazilGeographicalData.src.Application.Features.UserFeatures.GetAllUse
 
 
             RuleFor(x => x.Email)
-                .Must(email => IsEmailValid(email)).WithMessage("Email inválido.");
+                .Must(email => IsEmailValid(email!)).WithMessage("Email inválido.");
 
         }
 

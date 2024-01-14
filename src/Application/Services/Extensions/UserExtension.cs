@@ -1,19 +1,10 @@
-﻿using AutoMapper;
-using BrazilGeographicalData.src.Application.Common.Exceptions;
-using BrazilGeographicalData.src.Application.Features.UserFeatures.CreateUser;
+﻿using BrazilGeographicalData.src.Application.Features.UserFeatures.CreateUser;
 using BrazilGeographicalData.src.Application.Features.UserFeatures.DeleteUser;
 using BrazilGeographicalData.src.Application.Features.UserFeatures.GetAllUser;
 using BrazilGeographicalData.src.Application.Features.UserFeatures.GetUser;
 using BrazilGeographicalData.src.Application.Features.UserFeatures.PutUser;
 using BrazilGeographicalData.src.Application.Features.UserFeatures.UserLogin;
-using BrazilGeographicalData.src.Application.Services.TokenServices;
-using BrazilGeographicalData.src.Domain.Entities;
-using BrazilGeographicalData.src.Domain.Interfaces;
-using BrazilGeographicalData.src.Infra.Repositories;
-using FluentValidation;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace BrazilGeographicalData.src.Application.Services.Extensions
 {

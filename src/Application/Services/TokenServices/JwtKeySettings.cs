@@ -1,9 +1,8 @@
-﻿using System;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
-namespace BrazilGeographicalData.src
+namespace BrazilGeographicalData.src.Application.Services.TokenServices
 {
-    public static class Settings
+    public static class JwtKeySettings
     {
         public static string JwtKey { get; } = GenerateJwtKey();
 
