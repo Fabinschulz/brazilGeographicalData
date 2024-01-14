@@ -15,6 +15,7 @@ A API oferece o serviço de cadastro de usuários, permitindo que, após o login
 
 - **.NET 7**
 - **Docker**
+- **SQLite**
 
 ## Dependências
 
