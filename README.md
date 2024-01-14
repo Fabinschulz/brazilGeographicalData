@@ -37,7 +37,7 @@ services:
 
 ## Referências
 
-Para entender melhor as práticas adotadas e as tecnologias utilizadas, recomendamos a leitura das seguintes referências:
+Para entender melhor as práticas adotadas e as tecnologias utilizadas, recomendo a leitura das seguintes referências:
 
 - [ASP.NET Core CQRS Mediator](https://balta.io/blog/aspnet-core-cqrs-mediator)
 - [Tutorial ASP.NET Core - Min Web API](https://learn.microsoft.com/pt-br/aspnet/core/tutorials/min-web-api?view=aspnetcore-8.0&tabs=visual-studio)
