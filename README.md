@@ -2,17 +2,30 @@
 
 Este projeto consiste em um repositório que contém dados sobre cidades e estados de todo o Brasil.
 
-## Tecnologia e Dependências
+## Funcionalidades do Projeto
+
+A API oferece o serviço de cadastro de usuários, permitindo que, após o login, os usuários utilizem os seguintes serviços:
+
+- **Cadastro de Localidade:** Permite que o usuário cadastre uma localidade de acordo com o perfil do IBGE.
+- **Consulta de Localidades:** Possibilita a consulta de todos os registros de localidades, além de consultas específicas por ID, Cidade e Sigla do Estado.
+- **Atualização de Cadastro de Localidade:** Permite a modificação do cadastro de localidade.
+- **Remoção de Registro de Localidade:** Permite a exclusão de um registro de localidade.
+
+## Tecnologia 
 
 - **.NET 7**
 - **Docker**
+
+## Dependências
+
 - **Auto Mapper**
 - **Fluent Validation**
 - **MediatR**
 - **Entity Framework Core**
-- **Autenticação com JWT Bearer**
-- **Tokens JWT**
-- **Injeção de Dependência**
+- **Entity Framework Core - Sqlite**
+- **JWT Bearer Authentication**
+- **JWT Tokens**
+- **Dependency Injection**
 
 ## Configuração do Docker Compose
 
@@ -33,7 +46,6 @@ services:
     volumes:
       - ./db/:/root/db/
 ```
-
 
 ## Referências
 
