@@ -16,5 +16,17 @@
         <member name="M:BrazilGeographicalData.Migrations.ibge.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:BrazilGeographicalData.Migrations.locations">
+            <inheritdoc />
+        </member>
+        <member name="M:BrazilGeographicalData.Migrations.locations.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BrazilGeographicalData.Migrations.locations.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BrazilGeographicalData.Migrations.locations.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

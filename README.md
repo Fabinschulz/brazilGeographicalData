@@ -35,6 +35,7 @@ Para facilitar o desenvolvimento e testes, recomendamos a utilização do Docker
 ```bash
 docker-compose up -d
 ```
+
 Para configurar o Docker Compose, adicione o seguinte código ao seu arquivo `docker-compose.yml`:
 
 ```yaml
@@ -46,6 +47,26 @@ services:
     tty: true
     volumes:
       - ./db/:/root/db/
+```
+
+## Geração de Migrações
+
+Para realizar a geração de migrações e atualizar o banco de dados, siga os passos abaixo:
+
+## Passo 1: Abra um terminal na raiz do projeto.
+
+## Passo 2: Execute o seguinte comando para criar uma nova migração:
+
+```bash
+dotnet ef migrations add NomeDaMigracao
+
+Substitua "NomeDaMigracao" pelo nome desejado para a migração.
+```
+
+## Passo 3: Execute o seguinte comando para aplicar a migração ao banco de dados:
+
+```bash
+dotnet ef database update
 ```
 
 ## Referências

@@ -9,6 +9,7 @@ builderServices.ConfigureCorsPolicy();
 builderServices.AddControllers();
 builderServices.AddEndpointsApiExplorer();
 builderServices.AddSwaggerGen();
+builder.AddLocationContext();
 builder.AddUserContext();
 builder.AddDatabase();
 builder.AddSwaggerDoc();
@@ -32,5 +33,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapUserEndpoints();
+app.MapLocationEndpoints();
 
 app.Run();

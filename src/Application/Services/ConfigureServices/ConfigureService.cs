@@ -18,6 +18,14 @@ namespace BrazilGeographicalData.src.Application.Services.ConfigureServices
 {
     public static class ConfigureService
     {
+        public static void AddLocationContext(this WebApplicationBuilder builder) 
+        {
+            builder.Services.AddTransient<LocationRepository>();
+            builder.Services.AddScoped<ILocationFactory, ConcreteLocationFactory>();
+            builder.Services.AddScoped<ILocationRepository, LocationRepository>();
+
+        }
+
         public static void AddUserContext(this WebApplicationBuilder builder)
         {
             builder.Services.AddTransient<UserRepository>();
@@ -93,6 +101,26 @@ namespace BrazilGeographicalData.src.Application.Services.ConfigureServices
             services.AddMediatR(typeof(Program));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+            // Add database migration during application startup
+            using (var scope = services.BuildServiceProvider().CreateScope())
+            {
+                var serviceProvider = scope.ServiceProvider;
+                try
+                {
+                    var context = serviceProvider.GetRequiredService<DataContext>();
+                    var logger = serviceProvider.GetRequiredService<ILogger<DataContext>>();
+
+                    context.Database.Migrate();
+                    logger.LogInformation("Migração do banco de dados concluída com sucesso.");
+                }
+                catch (Exception ex)
+                {
+                    var logger = serviceProvider.GetRequiredService<ILogger<DataContext>>();
+                    logger.LogError(ex, "Erro durante a migração do banco de dados.");
+                    throw new Exception("Erro durante a migração do banco de dados.", ex);
+                }
+            }
 
         }
 
