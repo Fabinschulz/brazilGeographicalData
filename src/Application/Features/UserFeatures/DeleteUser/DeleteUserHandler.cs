@@ -1,7 +1,4 @@
 ﻿using AutoMapper;
-using BrazilGeographicalData.src.Application.Common.Exceptions;
-using BrazilGeographicalData.src.Application.Features.UserFeatures.GetUser;
-using BrazilGeographicalData.src.Domain.Entities;
 using BrazilGeographicalData.src.Domain.Interfaces;
 using FluentValidation;
 using MediatR;
@@ -11,21 +8,30 @@ namespace BrazilGeographicalData.src.Application.Features.UserFeatures.DeleteUse
     public sealed class DeleteUserHandler : IRequestHandler<DeleteUserRequest, DeleteUserResponse>
     {
         private readonly IUserRepository _userRepository;
-        private readonly IMapper _mapper;
         private readonly IValidator<DeleteUserRequest> _validator;
 
-        public DeleteUserHandler(IUserRepository userRepository, IMapper mapper, IValidator<DeleteUserRequest> validator)
+        public DeleteUserHandler(IUserRepository userRepository, IValidator<DeleteUserRequest> validator)
         {
             _userRepository = userRepository;
-            _mapper = mapper;
             _validator = validator;
         }
 
         public async Task<DeleteUserResponse> Handle(DeleteUserRequest request, CancellationToken cancellationToken)
         {
-            await _validator.ValidateAndThrowAsync(request);
-            var isDeleted = await _userRepository.Delete(request.Id);
+            await ValidateRequest(request);
+            var isDeleted = await DeleteUserInRepository(request.Id);
             return new DeleteUserResponse(isDeleted);
         }
+
+        private async Task ValidateRequest(DeleteUserRequest request)
+        {
+            await _validator.ValidateAndThrowAsync(request);
+        }
+
+        private async Task<bool> DeleteUserInRepository(Guid id)
+        {
+            return await _userRepository.Delete(id);
+        }
+
     }
 }

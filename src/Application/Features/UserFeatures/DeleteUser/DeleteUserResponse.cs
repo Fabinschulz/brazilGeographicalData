@@ -1,14 +1,10 @@
-﻿using System;
+﻿using BrazilGeographicalData.src.Application.Common.BaseResponse;
+using System;
 
 namespace BrazilGeographicalData.src.Application.Features.UserFeatures.DeleteUser
 {
-    public sealed class DeleteUserResponse
+    public sealed class DeleteUserResponse : DeleteResponseBase
     {
-        public bool IsSuccess { get; }
-
-        public DeleteUserResponse(bool isSuccess)
-        {
-            IsSuccess = isSuccess;
-        }
+        public DeleteUserResponse(bool isSuccess) : base(isSuccess) { }
     }
 }

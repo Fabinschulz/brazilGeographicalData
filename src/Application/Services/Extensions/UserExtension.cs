@@ -70,14 +70,14 @@ namespace BrazilGeographicalData.src.Application.Services.Extensions
             }).WithTags("USER").WithSummary("Update a user").WithOpenApi();
 
             app.MapDelete("/v1/user/{id}", async (IMediator mediator, Guid id) =>
-           {
+            {
 
                var command = new DeleteUserRequest(id);
 
                var isDeleted = await mediator.Send(command);
                return Results.Ok(isDeleted);
                
-           }).WithTags("USER").WithSummary("Delete a user").WithOpenApi().RequireAuthorization(IdentityData.AdminPolicy);
+            }).WithTags("USER").WithSummary("Delete a user").WithOpenApi().RequireAuthorization(IdentityData.AdminPolicy);
 
         }
 
