@@ -34,7 +34,6 @@
 
 	<ItemGroup>
 	  <Folder Include="src\Application\Features\LocationFeatures\GetAllLocation\" />
-	  <Folder Include="src\Application\Features\LocationFeatures\GetLocation\" />
 	  <Folder Include="src\Application\Features\LocationFeatures\PutLocation\" />
 	</ItemGroup>
 
