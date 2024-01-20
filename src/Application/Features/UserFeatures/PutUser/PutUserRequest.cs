@@ -1,7 +1,4 @@
-﻿using BrazilGeographicalData.src.Domain.Entities;
-using MediatR;
-using System;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+﻿using MediatR;
 
 namespace BrazilGeographicalData.src.Application.Features.UserFeatures.PutUser
 {

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BrazilGeographicalData.src.Application.Common.Exceptions;
-using BrazilGeographicalData.src.Application.Features.UserFeatures.CreateUser;
 using BrazilGeographicalData.src.Domain.Entities;
 using BrazilGeographicalData.src.Domain.Interfaces;
 using FluentValidation;

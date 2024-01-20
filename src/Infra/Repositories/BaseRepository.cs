@@ -107,12 +107,13 @@ namespace BrazilGeographicalData.src.Infra.Repositories
             return entity;
         }
 
-        public async Task Update(T entity)
+        public async Task<T> Update(T entity)
         {
             entity.UpdatedAt = DateTime.UtcNow;
             _context.Set<T>().Update(entity);
             await _context.SaveChangesAsync();
             await Task.CompletedTask;
+            return entity;
         }
 
         public async Task<bool> Delete(Guid id)

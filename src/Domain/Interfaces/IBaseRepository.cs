@@ -8,7 +8,7 @@ namespace BrazilGeographicalData.src.Domain.Interfaces
         Task<ListDataPagination<T>> GetAll(int Page, int Size, string? Username, string? Email, bool IsDeleted, string? OrderBy, string Role);
         Task<T> GetById(Guid id);
         Task<T> Create(T entity);
-        Task Update(T entity);
+        Task<T> Update(T entity);
         Task<bool> Delete(Guid id);
     }
 }
