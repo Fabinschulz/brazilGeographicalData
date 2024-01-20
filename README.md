@@ -76,3 +76,7 @@ Para entender melhor as práticas adotadas e as tecnologias utilizadas, recomend
 - [ASP.NET Core CQRS Mediator](https://balta.io/blog/aspnet-core-cqrs-mediator)
 - [Tutorial ASP.NET Core - Min Web API](https://learn.microsoft.com/pt-br/aspnet/core/tutorials/min-web-api?view=aspnetcore-8.0&tabs=visual-studio)
 - [Rotas com Handlers - ASP.NET Core](https://learn.microsoft.com/pt-br/aspnet/core/fundamentals/minimal-apis/route-handlers?view=aspnetcore-8.0)
+
+## API IBGE
+
+![api-ibge](assets/ibge-swagger.png)
