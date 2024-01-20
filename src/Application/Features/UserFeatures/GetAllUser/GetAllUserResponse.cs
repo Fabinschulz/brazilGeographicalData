@@ -1,21 +1,12 @@
-﻿using BrazilGeographicalData.src.Domain.Entities;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using BrazilGeographicalData.src.Application.Common.CQBase;
+using BrazilGeographicalData.src.Domain.Entities;
 
 namespace BrazilGeographicalData.src.Application.Features.UserFeatures.GetAllUser
 {
-    public sealed record GetAllUserResponse
+    public class GetAllUserResponse : GetAllResponseBase<User>
     {
-        public int Page { get; set; }
-        public int TotalPages { get; set; }
-        public int TotalItems { get; set; }
-        public List<User> Data { get; set; }
-
-        public GetAllUserResponse(ListDataPagination<User> users)
+        public GetAllUserResponse(ListDataPagination<User> entity) : base(entity)
         {
-            Page = users.Page;
-            TotalPages = users.TotalPages;
-            TotalItems = users.TotalItems;
-            Data = users.Data;
         }
     }
 }
