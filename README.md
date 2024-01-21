@@ -11,6 +11,10 @@ A API oferece o serviço de cadastro de usuários, permitindo que, após o login
 - **Atualização de Cadastro de Localidade:** Permite a modificação do cadastro de localidade.
 - **Remoção de Registro de Localidade:** Permite a exclusão de um registro de localidade.
 
+## CQRS (Command Query Responsibility Segregation)
+- Este projeto segue o padrão CQRS, uma abordagem de arquitetura que separa a responsabilidade de manipulação de comandos (alteração de estado) da responsabilidade de consultas (leitura de estado).
+ Essa separação pode proporcionar uma melhor escalabilidade, flexibilidade e manutenção.
+ 
 ## Tecnologia 
 
 - **.NET 7**
